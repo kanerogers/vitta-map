@@ -1,0 +1,32 @@
+function init() {
+  google.earth.createInstance('map3d', initCB, failureCB);
+}
+
+function initCB(instance) {
+  ge = instance;
+  ge.getWindow().setVisibility(true);
+}
+
+function failureCB(errorCode) {
+  console.log(errorCode);
+}
+
+google.setOnLoadCallback(init);
+
+$(document).ready(function() {
+  setTimeout(function() {
+    $("#school-title").text("Camberwell High School");
+    $(".image-container").first().children().toggleClass("grey");
+    $(".image-container")[1].children().toggleClass("grey");
+    panCamera();
+  }, 5000);
+
+  var panCamera = function() {
+    var lookAt = ge.getView().copyAsLookAt(ge.ALTITUDE_RELATIVE_TO_GROUND);
+
+    lookAt.setLatitude(36.584207);
+    lookAt.setLongitude(-121.754322);
+
+    ge.getView().setAbstractView(lookAt);
+  }
+});
