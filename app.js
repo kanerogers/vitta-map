@@ -19,10 +19,9 @@
     function Earth() {}
 
     Earth.prototype.setViewTo = function(location) {
-      if (location.name) {
-        return console.log("Hey we're at " + location.name);
-      } else {
-        return console.log("Yo here's " + location);
+      console.log("Hey we're at " + location.name);
+      if (location.lat) {
+        return console.log(location.lat);
       }
     };
 
@@ -33,44 +32,71 @@
   google.setOnLoadCallback(setUpEarth);
 
   run_slide_show = function() {
-    var $scope, earth, pan_through_schools, schools, schools_in_states, state;
+    var $scope, earth, pan_through_schools, pan_through_states, schools_in_states;
     earth = new Earth;
     $scope = {};
     pan_through_schools = function(schools) {
-      var doSetTimeout, school, time, _i, _len, _results;
+      var callback, iterator, length, timer;
       console.log("IMMA LOOP THROUGH DEM SCHOOLS " + schools);
-      doSetTimeout = function(school, time) {
-        return setTimeout(function(school) {
-          return earth.setViewTo(school);
-        }, time);
-      };
-      time = 5000;
-      _results = [];
-      for (_i = 0, _len = schools.length; _i < _len; _i++) {
-        school = schools[_i];
-        doSetTimeout(school, time);
-        _results.push(time += 5000);
-      }
-      return _results;
-    };
-    schools_in_states = {
-      "Victoria": [
-        {
-          name: "Camberwell Grammar",
-          logo: "http://catholicschoolsguide.com.au/wp-content/uploads/xavier-college1.jpg"
-        }, {
-          name: "Xavier College",
-          logo: "http://catholicschoolsguide.com.au/wp-content/uploads/xavier-college1.jpg"
+      iterator = 0;
+      length = schools.length;
+      callback = function() {
+        if (iterator === length - 1) {
+          clearInterval(timer);
         }
-      ]
+        iterator++;
+      };
+      return timer = setInterval(callback, 1000);
     };
-    for (state in schools_in_states) {
-      schools = schools_in_states[state];
-      earth.setViewTo(state);
-      $scope.title = state;
-      $scope.highlighted = null;
-      pan_through_schools(schools);
-    }
+    pan_through_states = function(states) {
+      var callback, iterator, length, timer;
+      console.log("IMMA LOOP THROUGH DEM STATES " + states);
+      iterator = 0;
+      length = states.length;
+      callback = function() {
+        var state;
+        state = states[iterator];
+        earth.setViewTo(state);
+        $scope.title = state;
+        $scope.highlighted = null;
+        pan_through_schools(state.schools);
+        if (iterator === length - 1) {
+          clearInterval(timer);
+        }
+        iterator++;
+      };
+      return timer = setInterval(callback, 10000);
+    };
+    schools_in_states = [
+      {
+        name: "Victoria",
+        schools: [
+          {
+            name: "Camberwell Grammar",
+            logo: "http://catholicschoolsguide.com.au/wp-content/uploads/xavier-college1.jpg",
+            lat: "-37.8169075",
+            lng: "145.0682967"
+          }, {
+            name: "Xavier College",
+            logo: "http://catholicschoolsguide.com.au/wp-content/uploads/xavier-college1.jpg",
+            lat: "-37.812269",
+            lng: "145.031685"
+          }
+        ]
+      }, {
+        name: "Western Australia",
+        schools: [
+          {
+            name: "Mazenod College",
+            logo: "http://catholicschoolsguide.com.au/wp-content/uploads/xavier-college1.jpg"
+          }, {
+            name: "Perth College",
+            logo: "http://catholicschoolsguide.com.au/wp-content/uploads/xavier-college1.jpg"
+          }
+        ]
+      }
+    ];
+    pan_through_states(schools_in_states);
     return setTimeout(run_slide_show, 1000 * 30);
   };
 

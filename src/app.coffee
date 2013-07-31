@@ -10,16 +10,13 @@ failureCB = (errorCode) ->
 
 class Earth
   setViewTo: (location) ->
-    if location.name
-      console.log "Hey we're at #{location.name}"
-    else
-      console.log "Yo here's #{location}"
+    console.log "Hey we're at #{location.name}"
+    if location.lat
+      console.log location.lat
 
 google.setOnLoadCallback setUpEarth
 
 #####################
-
-
 
 run_slide_show = () ->
   earth = new Earth
@@ -28,35 +25,69 @@ run_slide_show = () ->
   pan_through_schools = (schools) ->
     console.log "IMMA LOOP THROUGH DEM SCHOOLS #{schools}"
 
-    doSetTimeout = (school, time) ->
-      setTimeout (school) ->
-        earth.setViewTo school
-      , time
+    iterator = 0
+    length = schools.length
 
-    time = 5000
-    for school in schools
-      doSetTimeout school, time
-      time += 5000
+    callback = ->
+      clearInterval timer if iterator is length - 1
+      iterator++
+      return
 
-    
+    timer = setInterval callback, 1000
 
-  schools_in_states =
-    "Victoria": [
-      {
-        name: "Camberwell Grammar"
-        logo: "http://catholicschoolsguide.com.au/wp-content/uploads/xavier-college1.jpg"
-      },
-      {
-        name: "Xavier College"
-        logo: "http://catholicschoolsguide.com.au/wp-content/uploads/xavier-college1.jpg"
-      },
-    ]
+  pan_through_states = (states) ->
+    console.log "IMMA LOOP THROUGH DEM STATES #{states}"
 
-  for state, schools of schools_in_states
-    earth.setViewTo state
-    $scope.title = state
-    $scope.highlighted = null
-    pan_through_schools schools
+    iterator = 0
+    length = states.length
+
+    callback = ->
+      state = states[iterator]
+      earth.setViewTo state
+      $scope.title = state
+      $scope.highlighted = null
+      pan_through_schools state.schools
+      clearInterval timer if iterator is length - 1
+      iterator++
+      return
+
+    timer = setInterval callback, 10000
+
+  schools_in_states = [
+    { 
+      name: "Victoria"
+      schools: [
+        {
+          name: "Camberwell Grammar"
+          logo: "http://catholicschoolsguide.com.au/wp-content/uploads/xavier-college1.jpg"
+          lat: "-37.8169075"
+          lng: "145.0682967"
+        },
+        {
+          name: "Xavier College"
+          logo: "http://catholicschoolsguide.com.au/wp-content/uploads/xavier-college1.jpg"
+          lat: "-37.812269"
+          lng: "145.031685"
+        },
+      ]
+    },
+    {
+      name: "Western Australia",
+      schools : [
+        {
+          name: "Mazenod College"
+          logo: "http://catholicschoolsguide.com.au/wp-content/uploads/xavier-college1.jpg"
+        },
+        {
+          name: "Perth College"
+          logo: "http://catholicschoolsguide.com.au/wp-content/uploads/xavier-college1.jpg"
+        },
+      ]
+    }
+  ]
+
+  pan_through_states schools_in_states
+
 
   setTimeout run_slide_show, 1000 * 30 # 30 Seconds
 
