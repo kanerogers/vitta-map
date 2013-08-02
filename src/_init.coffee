@@ -10,13 +10,14 @@ failureCB = (errorCode) ->
 
 class Earth
   setViewTo: (location) ->
+    document.getElementById("school-title").innerHTML = location.name
     console.log "Hey we're at #{location.name}"
     if location.lat
       console.log location.lat
 
       # Get the current view.
       lookAt = ge.getView().copyAsLookAt(ge.ALTITUDE_RELATIVE_TO_GROUND)
-      lookAt.setRange(564.00);
+      lookAt.setRange(location.range || 564.00);
 
        # Set new latitude and longitude values.
       lookAt.setLatitude(location.lat)

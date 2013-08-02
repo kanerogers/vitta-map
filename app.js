@@ -19,11 +19,12 @@ Earth = (function() {
 
   Earth.prototype.setViewTo = function(location) {
     var lookAt;
+    document.getElementById("school-title").innerHTML = location.name;
     console.log("Hey we're at " + location.name);
     if (location.lat) {
       console.log(location.lat);
       lookAt = ge.getView().copyAsLookAt(ge.ALTITUDE_RELATIVE_TO_GROUND);
-      lookAt.setRange(564.00);
+      lookAt.setRange(location.range || 564.00);
       lookAt.setLatitude(location.lat);
       lookAt.setLongitude(location.lng);
       return ge.getView().setAbstractView(lookAt);
@@ -64,7 +65,7 @@ run_slide_show = function() {
   };
   pan_through_states = function(states) {
     var callback, timeout;
-    timeout = 5000;
+    timeout = 10000;
     callback = function(state) {
       earth.setViewTo(state);
       $scope.title = state;
@@ -76,6 +77,9 @@ run_slide_show = function() {
   schools_in_states = [
     {
       name: "Victoria",
+      range: 1133048,
+      lng: 144.53876250295943,
+      lat: -37.96765428547502,
       schools: [
         {
           name: "Camberwell Grammar",
@@ -91,13 +95,20 @@ run_slide_show = function() {
       ]
     }, {
       name: "Western Australia",
+      range: 2000000,
+      lat: -27.6728168,
+      lng: 121.6283098,
       schools: [
         {
           name: "Mazenod College",
-          logo: "http://catholicschoolsguide.com.au/wp-content/uploads/xavier-college1.jpg"
+          logo: "http://catholicschoolsguide.com.au/wp-content/uploads/xavier-college1.jpg",
+          lat: -32.006682,
+          lng: 116.038843
         }, {
           name: "Perth College",
-          logo: "http://catholicschoolsguide.com.au/wp-content/uploads/xavier-college1.jpg"
+          logo: "http://catholicschoolsguide.com.au/wp-content/uploads/xavier-college1.jpg",
+          lat: -31.931425,
+          lng: 115.875297
         }
       ]
     }

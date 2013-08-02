@@ -24,7 +24,7 @@ run_slide_show = () ->
     pan_through_array schools, callback, timeout
 
   pan_through_states = (states) ->
-    timeout = 5000
+    timeout = 10000
     callback = (state) ->
       earth.setViewTo state
       $scope.title = state
@@ -38,6 +38,9 @@ run_slide_show = () ->
   schools_in_states = [
     { 
       name: "Victoria"
+      range: 1133048
+      lng: 144.53876250295943
+      lat: -37.96765428547502
       schools: [
         {
           name: "Camberwell Grammar"
@@ -54,15 +57,22 @@ run_slide_show = () ->
       ]
     },
     {
-      name: "Western Australia",
+      name: "Western Australia"
+      range: 2000000
+      lat:  -27.6728168
+      lng:  121.6283098
       schools : [
         {
           name: "Mazenod College"
           logo: "http://catholicschoolsguide.com.au/wp-content/uploads/xavier-college1.jpg"
+          lat:  -32.006682
+          lng:  116.038843
         },
         {
           name: "Perth College"
           logo: "http://catholicschoolsguide.com.au/wp-content/uploads/xavier-college1.jpg"
+          lat: -31.931425
+          lng: 115.875297
         },
       ]
     }
