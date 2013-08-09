@@ -18,8 +18,11 @@ Earth = (function() {
   function Earth() {}
 
   Earth.prototype.setViewTo = function(location) {
-    var lookAt;
-    document.getElementById("school-title").innerHTML = location.name;
+    var element, lookAt;
+    element = document.getElementById("school-title");
+    if (null !== element) {
+      element.innerHtml = location.name;
+    }
     console.log("Hey we're at " + location.name);
     if (location.lat) {
       console.log(location.lat);
@@ -38,7 +41,7 @@ Earth = (function() {
 google.setOnLoadCallback(setUpEarth);
 
 run_slide_show = function() {
-  var $scope, earth, pan_through_array, pan_through_schools, pan_through_states, schools_in_states;
+  var $scope, australia, earth, pan_through_array, pan_through_schools, pan_through_states, schools_in_states;
   earth = new Earth;
   $scope = {};
   pan_through_array = function(array, callback, timeout) {
@@ -57,20 +60,27 @@ run_slide_show = function() {
   };
   pan_through_schools = function(schools) {
     var callback, timeout;
-    timeout = 3000;
+    timeout = 5000;
     callback = function(school) {
       earth.setViewTo(school);
     };
     return pan_through_array(schools, callback, timeout);
   };
   pan_through_states = function(states) {
-    var callback, timeout;
-    timeout = 10000;
-    callback = function(state) {
+    var callback, panToAustralia, panToState, timeout;
+    panToAustralia = function() {
+      return earth.setViewTo(australia);
+    };
+    panToState = function(state) {
       earth.setViewTo(state);
       $scope.title = state;
       $scope.highlighted = null;
       pan_through_schools(state.schools);
+    };
+    timeout = 20 * 1000;
+    callback = function(state) {
+      panToState(state);
+      return setTimeout(panToAustralia, 15 * 1000);
     };
     return pan_through_array(states, callback, timeout);
   };
@@ -113,8 +123,14 @@ run_slide_show = function() {
       ]
     }
   ];
+  australia = {
+    name: "Australia",
+    range: 4700000,
+    lng: 135.307,
+    lat: -26.91234
+  };
   pan_through_states(schools_in_states);
-  return setTimeout(run_slide_show, 1000 * 30);
+  return setTimeout(run_slide_show, 1000 * 45);
 };
 
 run_slide_show();

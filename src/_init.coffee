@@ -10,7 +10,9 @@ failureCB = (errorCode) ->
 
 class Earth
   setViewTo: (location) ->
-    document.getElementById("school-title").innerHTML = location.name
+    element = document.getElementById("school-title")
+    if null != element 
+      element.innerHtml = location.name
     console.log "Hey we're at #{location.name}"
     if location.lat
       console.log location.lat
