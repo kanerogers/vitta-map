@@ -8,22 +8,5 @@ initCB = (instance) ->
 failureCB = (errorCode) ->
   console.log errorCode
 
-class Earth
-  setViewTo: (location) ->
-    element = document.getElementById("school-title")
-    if null != element 
-      element.innerHtml = location.name
-    console.log "Hey we're at #{location.name}"
-    if location.lat
-      console.log location.lat
-
-      # Get the current view.
-      lookAt = ge.getView().copyAsLookAt(ge.ALTITUDE_RELATIVE_TO_GROUND)
-      lookAt.setRange(location.range || 564.00);
-
-       # Set new latitude and longitude values.
-      lookAt.setLatitude(location.lat)
-      lookAt.setLongitude(location.lng)
-      ge.getView().setAbstractView(lookAt)
 
 google.setOnLoadCallback setUpEarth
