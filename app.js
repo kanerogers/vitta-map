@@ -20,7 +20,7 @@ run_slide_show = function(earth) {
   var timeout;
   pan_through_states(schoolsInStates);
   timeout = calculateTimeout(schoolsInStates);
-  return setTimeout(run_slide_show, 1000 * 45);
+  return setTimeout(run_slide_show, timeout);
 };
 
 MapCtrl = function($scope) {
@@ -166,15 +166,18 @@ schoolsInStates = [
         name: "Kambala",
         logo: "kambala",
         lat: -33.8647888,
-        lng: 151.2715316,
+        lng: 151.2715316
+      }, {
         name: "SCEGGS Darlinghurst",
         logo: "sceggs",
         lat: -33.876144,
-        lng: 151.218369,
+        lng: 151.218369
+      }, {
         name: "St. Aloysius' College",
         logo: "aloysius",
         lat: -33.8484373,
-        lng: 151.2143868,
+        lng: 151.2143868
+      }, {
         name: "Presbyterian Ladies College, Sydney",
         logo: "plc",
         lat: -33.881386,
@@ -191,15 +194,18 @@ schoolsInStates = [
         name: "Rockhampton Grammar",
         logo: "rockhampton",
         lat: -23.3851158,
-        lng: 150.4940152,
+        lng: 150.4940152
+      }, {
         name: "A.B. Paterson College",
         logo: "abpat",
         lat: -27.9270641,
-        lng: 153.3601713,
+        lng: 153.3601713
+      }, {
         name: "Citipointe Christian College",
         logo: "citipointe",
         lat: -27.534798,
-        lng: 153.113118,
+        lng: 153.113118
+      }, {
         name: "St. John's Anglican College",
         logo: "stjohns",
         lat: -27.6125928,
@@ -216,7 +222,8 @@ schoolsInStates = [
         name: "St. Philip's College",
         logo: "stphilips",
         lat: -23.690934,
-        lng: 133.882398,
+        lng: 133.882398
+      }, {
         name: "Kormilda College",
         logo: "kormilda",
         lat: -12.4436,
@@ -233,7 +240,8 @@ schoolsInStates = [
         name: "Radford College",
         logo: "radford",
         lat: -35.2438889,
-        lng: 149.0880556,
+        lng: 149.0880556
+      }, {
         name: "Marist College",
         logo: "marist",
         lat: -35.3597768,
@@ -250,11 +258,13 @@ schoolsInStates = [
         name: "International School of Kuala Lumpur",
         logo: "iskl",
         lat: 3.161711,
-        lng: 101.7557627,
+        lng: 101.7557627
+      }, {
         name: "Jakarta International School",
         logo: "jis",
         lat: -6.28564,
-        lng: 106.78803,
+        lng: 106.78803
+      }, {
         name: "Bangkok Patana School",
         logo: "patana",
         lat: 13.6617875,
@@ -271,7 +281,8 @@ schoolsInStates = [
         name: "Nanjing International School",
         logo: "nanjing",
         lat: 32.0791939,
-        lng: 118.7511441,
+        lng: 118.7511441
+      }, {
         name: "Tianjin International School",
         logo: "tianjin",
         lat: 39.0559337,
@@ -307,8 +318,9 @@ pan_through_schools = function(schools) {
 
 pan_through_states = function(states) {
   var callback, timeout;
-  timeout = 20 * 1000;
+  timeout = (statePanTime(states[0])) + 5000;
   callback = function(state) {
+    timeout = (statePanTime(state)) + 5000;
     panToState(state);
     if (aussieState(state)) {
       return setTimeout(panToAustralia, statePanTime(state));
@@ -342,6 +354,7 @@ calculateTimeout = function(array) {
     state = array[_i];
     total += state.schools.length;
   }
+  total += 7;
   panTime = 1000 * 5;
   return timeout = total * panTime;
 };
@@ -351,5 +364,5 @@ statePanTime = function(state) {
 };
 
 aussieState = function(state) {
-  return state === !"China" || "South East Asia";
+  return state.name === !"China" || "South East Asia";
 };

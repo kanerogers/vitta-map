@@ -91,17 +91,17 @@ schoolsInStates = [
       logo: "kambala"
       lat: -33.8647888
       lng: 151.2715316
-      ,
+    ,
       name: "SCEGGS Darlinghurst"
       logo: "sceggs"
       lat: -33.876144
       lng: 151.218369
-      ,
+    ,
       name: "St. Aloysius' College"
       logo: "aloysius"
       lat: -33.8484373
       lng: 151.2143868
-      ,
+    ,
       name: "Presbyterian Ladies College, Sydney"
       logo: "plc"
       lat: -33.881386
@@ -118,17 +118,17 @@ schoolsInStates = [
       logo: "rockhampton"
       lat: -23.3851158
       lng: 150.4940152
-      ,
+    ,
       name: "A.B. Paterson College"
       logo: "abpat"
       lat: -27.9270641
       lng: 153.3601713
-      ,
+    ,
       name: "Citipointe Christian College"
       logo: "citipointe"
       lat: -27.534798
       lng: 153.113118
-      ,
+    ,
       name: "St. John's Anglican College"
       logo: "stjohns"
       lat: -27.6125928
@@ -145,7 +145,7 @@ schoolsInStates = [
       logo: "stphilips"
       lat: -23.690934
       lng: 133.882398
-      ,
+    ,
       name: "Kormilda College"
       logo: "kormilda"
       lat: -12.4436
@@ -162,7 +162,7 @@ schoolsInStates = [
       logo: "radford"
       lat: -35.2438889
       lng: 149.0880556
-      ,
+    ,
       name: "Marist College"
       logo: "marist"
       lat: -35.3597768
@@ -179,12 +179,12 @@ schoolsInStates = [
       logo: "iskl"
       lat: 3.161711
       lng: 101.7557627
-      ,
+    ,
       name: "Jakarta International School"
       logo: "jis"
       lat: -6.28564
       lng: 106.78803
-      ,
+    ,
       name: "Bangkok Patana School"
       logo: "patana"
       lat: 13.6617875
@@ -201,7 +201,7 @@ schoolsInStates = [
       logo: "nanjing"
       lat: 32.0791939
       lng: 118.7511441
-      ,
+    ,
       name: "Tianjin International School"
       logo: "tianjin"
       lat: 39.0559337

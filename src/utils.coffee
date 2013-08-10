@@ -20,9 +20,9 @@ pan_through_schools = (schools) ->
   pan_through_array schools, callback, timeout
 
 pan_through_states = (states) ->
-
-  timeout = 20 * 1000
+  timeout = (statePanTime states[0]) + 5000
   callback = (state) ->
+    timeout = (statePanTime state) + 5000
     panToState(state)
     if aussieState state
       setTimeout panToAustralia, (statePanTime state)
@@ -49,12 +49,15 @@ calculateTimeout = (array) ->
   # Then, since we pan to Australia every time we go to an Australian school, we have to double that
   total = total * 2
 
-  # Less the two times we're in Asia
+  # Except for when we're in Asia
   total = total - 2
 
   # Now we need to add a pan for each school in our states
   for state in array 
     total += state.schools.length
+
+  # Now add 7 to account for the initial delay in starting the slideshow.
+  total += 7
 
   # Fabulous, now how long will we wait at each place?
   panTime = 1000 * 5 # 5 Seconds
@@ -65,4 +68,4 @@ statePanTime = (state) ->
   (state.schools.length + 1) * 5000 # 5 Seconds per school
 
 aussieState = (state) ->
-  state is not "China" or "South East Asia"
+  state.name is not "China" or "South East Asia"
