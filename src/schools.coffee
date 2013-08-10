@@ -86,7 +86,7 @@ schoolsInStates = [
     range: 1750000
     lat: -27.72857752890055
     lng: 147.16564159039075
-    schools:
+    schools: [
       name: "Kambala"
       logo: "kambala"
       lat: -33.8647888
@@ -106,13 +106,14 @@ schoolsInStates = [
       logo: "plc"
       lat: -33.881386
       lng: 151.1154961
+    ]
   },
   {
     name: "Queensland"
     range: 2457255 
     lat: -18.846606463003678
     lng: 145.39413779269196
-    schools: 
+    schools: [
       name: "Rockhampton Grammar"
       logo: "rockhampton"
       lat: -23.3851158
@@ -132,13 +133,14 @@ schoolsInStates = [
       logo: "stjohns"
       lat: -27.6125928
       lng: 152.961073
+    ]
   },
   {
     name: "Northern Territory"
     range: 2457255
     lat: -20.09994393657499
     lng: 134.62769228738617
-    schools: 
+    schools: [
       name: "St. Philip's College"
       logo: "stphilips"
       lat: -23.690934
@@ -148,13 +150,14 @@ schoolsInStates = [
       logo: "kormilda"
       lat: -12.4436
       lng: 130.9229
+    ]
   },
   {
     name: "Australian Capital Territory"
     range: 16722.5264822886
     lat: -35.29642006461715
     lng: 149.140001506044
-    schools: 
+    schools: [
       name: "Radford College"
       logo: "radford"
       lat: -35.2438889
@@ -164,13 +167,14 @@ schoolsInStates = [
       logo: "marist"
       lat: -35.3597768
       lng: 149.0884452
+    ]
   },
   {
     name: "South East Asia"
     range: 4400000
     lat: 11.801464426569357
     lng: 102.61731840153027
-    schools:
+    schools: [
       name: "International School of Kuala Lumpur"
       logo: "iskl"
       lat: 3.161711
@@ -185,13 +189,14 @@ schoolsInStates = [
       logo: "patana"
       lat: 13.6617875
       lng: 100.6221838
+    ]
   },
   {
     name: "China"
     range: 4400000
     lat: 33.4148047064862
     lng: 97.74769944153013
-    schools:
+    schools: [
       name: "Nanjing International School"
       logo: "nanjing"
       lat: 32.0791939
@@ -201,5 +206,6 @@ schoolsInStates = [
       logo: "tianjin"
       lat: 39.0559337
       lng: 117.2724261
+    ]
   }
 ]

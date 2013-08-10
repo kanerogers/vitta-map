@@ -24,7 +24,8 @@ pan_through_states = (states) ->
   timeout = 20 * 1000
   callback = (state) ->
     panToState(state)
-    setTimeout panToAustralia, 15 * 1000 # 30 Seconds
+    if aussieState state
+      setTimeout panToAustralia, (statePanTime state)
 
   pan_through_array states, callback, timeout
 
@@ -40,3 +41,28 @@ panToState = (state) ->
   window.earth.setViewTo state
   pan_through_schools state.schools
   return
+
+calculateTimeout = (array) ->
+  # First, we need to find out how many states we have.
+  total = array.length 
+
+  # Then, since we pan to Australia every time we go to an Australian school, we have to double that
+  total = total * 2
+
+  # Less the two times we're in Asia
+  total = total - 2
+
+  # Now we need to add a pan for each school in our states
+  for state in array 
+    total += state.schools.length
+
+  # Fabulous, now how long will we wait at each place?
+  panTime = 1000 * 5 # 5 Seconds
+
+  timeout = total * panTime
+
+statePanTime = (state) ->
+  (state.schools.length + 1) * 5000 # 5 Seconds per school
+
+aussieState = (state) ->
+  state is not "China" or "South East Asia"
