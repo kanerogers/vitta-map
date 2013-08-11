@@ -364,5 +364,5 @@ statePanTime = function(state) {
 };
 
 aussieState = function(state) {
-  return state.name === !"China" || "South East Asia";
+  return state.name === !"China" || !"South East Asia";
 };

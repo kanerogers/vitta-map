@@ -68,4 +68,4 @@ statePanTime = (state) ->
   (state.schools.length + 1) * 5000 # 5 Seconds per school
 
 aussieState = (state) ->
-  state.name is not "China" or "South East Asia"
+  state.name is not "China" or not "South East Asia"
