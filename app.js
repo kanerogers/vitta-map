@@ -108,7 +108,7 @@ schoolsInStates = [
     schools: [
       {
         name: "John XXIII College",
-        logo: "johnxxii",
+        logo: "johnxxiii",
         lat: -32.006682,
         lng: 116.038843
       }, {
@@ -140,7 +140,7 @@ schoolsInStates = [
         lat: -34.9595118,
         lng: 138.6173848
       }, {
-        name: "Pulteney Gramar",
+        name: "Pulteney Grammar",
         logo: "pulteney",
         lat: -34.9352115,
         lng: 138.6024578

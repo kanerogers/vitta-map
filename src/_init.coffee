@@ -8,5 +8,4 @@ initCB = (instance) ->
 failureCB = (errorCode) ->
   console.log errorCode
 
-
 google.setOnLoadCallback setUpEarth
